@@ -63,6 +63,8 @@ class CriaTabelasCadastro extends Migration {
 
 		});
 
+
+
 		Schema::create('operadoras', function ($table){
 			$table->engine = 'InnoDB';
             $table->increments('id');
