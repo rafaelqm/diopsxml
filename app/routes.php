@@ -78,6 +78,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
  *  ------------------------------------------
  */
 
+
 // User reset routes
 Route::get('user/reset/{token}', 'UserController@getReset');
 // User password reset
