@@ -13,22 +13,21 @@
 @section('content')
 	<div class="page-header">
 		<h3>
-			{{{ $title }}}
-			@if(!count($operadoras))
-				<div class="pull-right">
-					<a href="{{{ URL::to('admin/operadoras/create') }}}" class="btn btn-small btn-info iframe"><span class="glyphicon glyphicon-plus-sign"></span> Criar</a>
-				</div>
-			@endif
+		{{{ $title }}}
+		
+		<div class="pull-right">
+			<a href="{{{ URL::to('admin/representantes/create') }}}" class="btn btn-small btn-info iframe"><span class="glyphicon glyphicon-plus-sign"></span> Criar</a>
+		</div>
+			
 		</h3>
 	</div>
 
-	<table id="operadoras" class="table table-striped table-hover">
+	<table id="representantes" class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th class="col-md-2">{{{ Lang::get('admin/operadoras/table.registroANS') }}}</th>
-				<th class="col-md-2">{{{ Lang::get('admin/operadoras/table.CNPJ') }}}</th>
-				<th class="col-md-3">{{{ Lang::get('admin/operadoras/table.razaoSocial') }}}</th>
-				<th class="col-md-3">{{{ Lang::get('admin/operadoras/table.nomeFantasia') }}}</th>
+				<th class="col-md-2">{{{ Lang::get('admin/representantes/table.CPF') }}}</th>
+				<th class="col-md-4">{{{ Lang::get('admin/representantes/table.nome') }}}</th>
+				<th class="col-md-3">{{{ Lang::get('admin/representantes/table.tipoRepresentante') }}}</th>
 				<th class="col-md-2">{{{ Lang::get('table.actions') }}}</th>
 			</tr>
 		</thead>
@@ -42,7 +41,7 @@
 	<script type="text/javascript">
 		var oTable;
 		$(document).ready(function() {
-			oTable = $('#operadoras').dataTable( {
+			oTable = $('#representantes').dataTable( {
 				"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
 				"sPaginationType": "bootstrap",
 				"oLanguage": {
@@ -70,7 +69,7 @@
 				},
 				"bProcessing": true,
 		        "bServerSide": true,
-		        "sAjaxSource": "{{ URL::to('admin/operadoras/data') }}",
+		        "sAjaxSource": "{{ URL::to('admin/representantes/data') }}",
 		        "fnDrawCallback": function ( oSettings ) {
 	           		$(".iframe").colorbox({iframe:true, width:"90%", height:"90%"});
 	     		}

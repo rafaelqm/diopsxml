@@ -82,9 +82,42 @@
                 </div>
     			<div class="collapse navbar-collapse navbar-ex1-collapse">
     				<ul class="nav navbar-nav">
-    					<li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin') }}}"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-    					<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/blogs') }}}"><span class="glyphicon glyphicon-list-alt"></span> Blog</a></li>
-    					<li{{ (Request::is('admin/comments*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/comments') }}}"><span class="glyphicon glyphicon-bullhorn"></span> Comments</a></li>
+                        <li{{ (Request::is('admin') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin') }}}">
+                            <span class="glyphicon glyphicon-home"></span> Home</a>
+                        </li>
+                        <li class="dropdown{{ (Request::is('admin/operadoras*|admin/resps*|admin/admins*|admin/representantes*') ? ' active' : '') }}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <span class="glyphicon glyphicon-folder-open"></span> Cadastral <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li{{ (Request::is('admin/operadoras*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/operadoras') }}}"><span class="glyphicon glyphicon-list-alt"></span> Operadora</a></li>
+                                <li{{ (Request::is('admin/resps*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/resps') }}}"><span class="glyphicon glyphicon-bullhorn"></span> Responsáveis</a></li>
+                                <li{{ (Request::is('admin/admins*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/admins') }}}"><span class="glyphicon glyphicon-briefcase"></span> Administradores</a></li>
+                                <li{{ (Request::is('admin/representantes*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/representantes') }}}"><span class="glyphicon glyphicon-lock"></span> Representantes</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown{{ (Request::is('admin/balancete*') ? ' active' : '') }}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <span class="glyphicon glyphicon-usd"></span> Financeiro <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li{{ (Request::is('admin/balancetes*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/balancetes') }}}"><span class="glyphicon glyphicon-list-alt"></span> Balancete trimestral</a></li>
+                                <!-- <li{{ (Request::is('admin/resps*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/resps') }}}"><span class="glyphicon glyphicon-bullhorn"></span> Responsáveis</a></li>
+                                <li{{ (Request::is('admin/admins*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/admins') }}}"><span class="glyphicon glyphicon-briefcase"></span> Administradores</a></li>
+                                <li{{ (Request::is('admin/representantes*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/representantes') }}}"><span class="glyphicon glyphicon-lock"></span> Representantes</a></li> -->
+                            </ul>
+                        </li>
+                        
+                        <li class="dropdown{{ (Request::is('admin/xml/cadastral*|admin/xml/financeiro*') ? ' active' : '') }}">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <span class="glyphicon glyphicon-flash"></span> Gerar XML <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li{{ (Request::is('admin/xml/cadastral*') ? ' class="active"' : '') }} > <a href="{{{ URL::to('admin/xml/cadastral') }}}" target="_blank" ><span class="glyphicon glyphicon-floppy-saved"></span> Cadastral</a></li>
+                                <li{{ (Request::is('admin/xml/financeiro*') ? ' class="active"' : '') }}> <a href="{{{ URL::to('admin/xml/financeiro') }}}" target="_blank"><span class="glyphicon glyphicon-usd"></span> Financeiro</a></li>
+                            </ul>
+                        </li>
+
     					<li class="dropdown{{ (Request::is('admin/users*|admin/roles*') ? ' active' : '') }}">
     						<a class="dropdown-toggle" data-toggle="dropdown" href="{{{ URL::to('admin/users') }}}">
     							<span class="glyphicon glyphicon-user"></span> Users <span class="caret"></span>
@@ -94,6 +127,16 @@
     							<li{{ (Request::is('admin/roles*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/roles') }}}"><span class="glyphicon glyphicon-user"></span> Roles</a></li>
     						</ul>
     					</li>
+                        <li>
+                            <select id="trimestre" onchange="alteraTrimestre();" class="form-control" style="margin-top:9px;">
+                                @for($i=2013;$i<= date('Y')+1;$i++)
+                                    @for($k=1;$k<= 4;$k++)
+                                        <option value="{{$i.'0'.$k}}" {{ Session::get('trimestre') == ($i.'0'.$k)?' selected="selected" ':'' }}>{{'0'.$k.'/'.$i}}</option>
+                                    @endfor
+                                @endfor
+
+                            </select>
+                        </li>
     				</ul>
     				<ul class="nav navbar-nav pull-right">
     					<li><a href="{{{ URL::to('/') }}}">View Homepage</a></li>
@@ -113,7 +156,7 @@
             </div>
 		</div>
 		<!-- ./ navbar -->
-
+        
 		<!-- Notifications -->
 		@include('notifications')
 		<!-- ./ notifications -->
@@ -133,11 +176,54 @@
 
 	<!-- Javascripts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="{{asset('assets/js/jquery.dataTables.js')}}"></script>
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/prettify.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.colorbox.js')}}"></script>
+
+    <script src="{{asset('assets/js/datatables-bootstrap.js')}}"></script>
+    <script src="{{asset('assets/js/datatables.fnReloadAjax.js')}}"></script>
 
     <script type="text/javascript">
-    	$('.wysihtml5').wysihtml5();
+    	// $('.wysihtml5').wysihtml5();
+
         $(prettyPrint);
+
+        $(document).ready(function(){
+
+        	@yield('onload')
+        });
+
+
+        $.ajaxSetup({ cache: false });
+
+        $("body").append("<div id='overlay' style='display:none'></div>");
+
+        $(document).ajaxStart(function () {
+             var docHeight = $(document).height();             
+
+             $("#overlay")
+                .height(docHeight)
+                .css({
+                   'opacity' : 0.4,
+                   'position': 'absolute',
+                   'top': 0,
+                   'left': 0,
+                   'background': "url({{ asset('assets/img/loading_white.gif') }}) no-repeat 50% 50% #000",
+                   'width': '100%',
+                   'z-index': 5000
+                });
+
+            $("#overlay").show();
+        });
+
+        $(document).ajaxComplete(function () {
+            $("#overlay").hide();
+        });
+
+        function alteraTrimestre(){
+            document.location = '/admin/trimestre/'+$('#trimestre').val();
+        }
     </script>
 
     @yield('scripts')

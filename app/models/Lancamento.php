@@ -11,5 +11,5 @@ class Lancamento extends Eloquent {
 							'debito',
 							'credito',
 							'saldoFinal',
-							'inicioPeriodo'];
+							'inicioPeriodo' ];
 }

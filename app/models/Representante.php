@@ -16,10 +16,11 @@ class Representante extends Eloquent {
 							'endereco'];
 
 	public function telefones(){
-		return Telefone::where('tabela','=','representantes')->where('tabela_id','=',$this->id)->get();
+		return $this->hasMany('Telefone','tabela_id'); //->where('tabela','=','representantes')->get(); 
+		// Telefone::where('tabela','=','representantes')->where('tabela_id','=',$this->id)->get();
 	}
 
-	public function endereco_atual(){
+	public function enderecoAtual(){
 		return $this->belongsTo('Endereco','endereco');
 	}
 

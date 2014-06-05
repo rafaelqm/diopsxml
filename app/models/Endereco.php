@@ -10,4 +10,8 @@ class Endereco extends Eloquent {
 							'municipioIBGE',
 							'siglaUF',
 							'cep'];
+
+	public function municipio(){
+		return $this->belongsTo('Municipio','municipioIBGE','municipioIBGE');
+	}
 }

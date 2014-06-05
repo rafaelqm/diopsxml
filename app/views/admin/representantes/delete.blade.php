@@ -9,20 +9,20 @@
         </ul>
     <!-- ./ tabs -->
     {{-- Delete Post Form --}}
-    <form id="deleteForm" class="form-horizontal" method="post" action="@if (isset($operadora)){{ URL::to('admin/operadoras/' . $operadora->id . '/delete') }}@endif" autocomplete="off">
+    <form id="deleteForm" class="form-horizontal" method="post" action="@if (isset($representante)){{ URL::to('admin/representantes/' . $representante->id . '/remover') }}@endif" autocomplete="off">
         
         <!-- CSRF Token -->
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
-        <input type="hidden" name="id" value="{{ $operadora->id }}" />
+        <input type="hidden" name="id" value="{{ $representante->id }}" />
         <!-- <input type="hidden" name="_method" value="DELETE" /> -->
         <!-- ./ csrf token -->
 
         <!-- Form Actions -->
         <div class="form-group">
             <div class="controls">
-                Remover Operadora
-                <element class="btn-cancel close_popup">Cancel</element>
-                <button type="submit" class="btn btn-danger">Delete</button>
+                Remover Representante <span class="label label-primary">{{$representante->nome}}</span>
+                <element class="btn-cancel close_popup">Cancelar</element>
+                <button type="submit" class="btn btn-danger">Remover</button>
             </div>
         </div>
         <!-- ./ form actions -->

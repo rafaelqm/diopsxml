@@ -18,7 +18,12 @@
 Route::model('user', 'User');
 Route::model('comment', 'Comment');
 Route::model('post', 'Post');
+Route::model('operadora', 'Operadora');
+Route::model('resp', 'Resp');
+Route::model('admin', 'Admin');
+Route::model('representante', 'Representante');
 Route::model('role', 'Role');
+Route::model('balancete', 'Lancamento');
 
 /** ------------------------------------------
  *  Route constraint patterns
@@ -44,13 +49,55 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::post('comments/{comment}/delete', 'AdminCommentsController@postDelete');
     Route::controller('comments', 'AdminCommentsController');
 
-    # Blog Management
+    /*# Blog Management
     Route::get('blogs/{post}/show', 'AdminBlogsController@getShow');
     Route::get('blogs/{post}/edit', 'AdminBlogsController@getEdit');
     Route::post('blogs/{post}/edit', 'AdminBlogsController@postEdit');
     Route::get('blogs/{post}/delete', 'AdminBlogsController@getDelete');
     Route::post('blogs/{post}/delete', 'AdminBlogsController@postDelete');
-    Route::controller('blogs', 'AdminBlogsController');
+    Route::controller('blogs', 'AdminBlogsController');*/
+
+    # Operadora Management
+    Route::get( 'operadoras/{operadora}/exibir', 'AdminOperadorasController@getShow');
+    Route::get( 'operadoras/{operadora}/editar', 'AdminOperadorasController@getEdit');
+    Route::post('operadoras/{operadora}/editar', 'AdminOperadorasController@postEdit');
+    Route::get('operadoras/{operadora}/remover', 'AdminOperadorasController@getDelete');
+    Route::post('operadoras/{operadora}/remover','AdminOperadorasController@postDelete');
+    Route::controller('operadoras',         'AdminOperadorasController');
+
+    Route::controller('xml',         'AdminXmlController');
+
+    # Representante Management
+    Route::get( 'representantes/{representante}/exibir', 'AdminRepresentantesController@getShow');
+    Route::get( 'representantes/{representante}/editar', 'AdminRepresentantesController@getEdit');
+    Route::post('representantes/{representante}/editar', 'AdminRepresentantesController@postEdit');
+    Route::get('representantes/{representante}/remover', 'AdminRepresentantesController@getDelete');
+    Route::post('representantes/{representante}/remover','AdminRepresentantesController@postDelete');
+    Route::controller('representantes',         'AdminRepresentantesController');
+
+    # Responsáveis Management
+    Route::get( 'resps/{resp}/exibir', 'AdminRespsController@getShow');
+    Route::get( 'resps/{resp}/editar', 'AdminRespsController@getEdit');
+    Route::post('resps/{resp}/editar', 'AdminRespsController@postEdit');
+    Route::get( 'resps/{resp}/delete', 'AdminRespsController@getDelete');
+    Route::post('resps/{resp}/delete','AdminRespsController@postDelete');
+    Route::controller('resps',         'AdminRespsController');
+
+    # Balancetes Management
+    Route::get( 'balancetes/{balancete}/exibir', 'AdminBalancetesController@getShow');
+    Route::get( 'balancetes/{balancete}/editar', 'AdminBalancetesController@getEdit');
+    Route::post('balancetes/{balancete}/editar', 'AdminBalancetesController@postEdit');
+    Route::get( 'balancetes/{balancete}/delete', 'AdminBalancetesController@getDelete');
+    Route::post('balancetes/{balancete}/delete', 'AdminBalancetesController@postDelete');
+    Route::controller('balancetes',         'AdminBalancetesController');
+
+    # Admin Management
+    Route::get( 'admins/{admin}/exibir', 'AdminAdminsController@getShow');
+    Route::get( 'admins/{admin}/editar', 'AdminAdminsController@getEdit');
+    Route::post('admins/{admin}/editar', 'AdminAdminsController@postEdit');
+    Route::get('admins/{admin}/delete', 'AdminAdminsController@getDelete');
+    Route::post('admins/{admin}/delete','AdminAdminsController@postDelete');
+    Route::controller('admins',         'AdminAdminsController');
 
     # User Management
     Route::get('users/{user}/show', 'AdminUsersController@getShow');
@@ -107,6 +154,9 @@ Route::get('contact-us', function()
 # Posts - Second to last set, match slug
 Route::get('{postSlug}', 'BlogController@getView');
 Route::post('{postSlug}', 'BlogController@postView');
+
+
+Route::get('cidades/{estado}', 'EnderecoController@getCidades');
 
 # Index Page - Last route, no matches
 Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));

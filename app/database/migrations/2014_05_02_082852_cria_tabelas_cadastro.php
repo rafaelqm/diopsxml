@@ -52,7 +52,6 @@ class CriaTabelasCadastro extends Migration {
 		Schema::create('enderecos', function ($table){
 			$table->engine = 'InnoDB';
             $table->increments('id');
-			$table->string('tipoEndereco',1)->default('M'); // M = Matriz | C = Correspondência
 			$table->string('logradouro');
 			$table->string('numLogradouro',10);
 			$table->string('complemento')->nullable();
@@ -74,6 +73,13 @@ class CriaTabelasCadastro extends Migration {
 			$table->string('CNPJ');
 			$table->string('eMail');
 			$table->string('naturezaJuridica')->default('SOCIA');
+
+			$table->string('segmentacao')->default('SSP');
+			$table->string('modalidade')->default('MEGRP');
+			
+			$table->string('siglaUF',2);
+			$table->string('municipioIBGE',10);
+
             $table->integer('endereco_matriz')->unsigned();
             $table->integer('endereco_corresp')->unsigned();
 

@@ -93,7 +93,7 @@
 			<h3>
 				{{ $title }}
 				<div class="pull-right">
-					<button class="btn btn-default btn-small btn-inverse close_popup"><span class="glyphicon glyphicon-circle-arrow-left"></span> Back</button>
+					<button class="btn btn-default btn-small btn-inverse close_popup"><span class="glyphicon glyphicon-circle-arrow-left"></span> Fechar</button>
 				</div>
 			</h3>
 		</div>
@@ -114,31 +114,35 @@
 	<!-- Javascripts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/prettify.js')}}"></script>
 
- <script type="text/javascript">
-$(document).ready(function(){
-$('.close_popup').click(function(){
-parent.oTable.fnReloadAjax();
-parent.jQuery.fn.colorbox.close();
-return false;
-});
-$('#deleteForm').submit(function(event) {
-var form = $(this);
-$.ajax({
-type: form.attr('method'),
-url: form.attr('action'),
-data: form.serialize()
-}).done(function() {
-parent.jQuery.colorbox.close();
-parent.oTable.fnReloadAjax();
-}).fail(function() {
-});
-event.preventDefault();
-});
-});
-$('.wysihtml5').wysihtml5();
-$(prettyPrint)
-</script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.close_popup').click(function(){
+				parent.oTable.fnReloadAjax();
+				parent.jQuery.fn.colorbox.close();
+				return false;
+			});
+			$('#deleteForm').submit(function(event) {
+				var form = $(this);
+				$.ajax({
+					type: form.attr('method'),
+					url: form.attr('action'),
+					data: form.serialize()
+				}).done(function() {
+					parent.jQuery.colorbox.close();
+					parent.oTable.fnReloadAjax();
+				}).fail(function() {
+				});
+				event.preventDefault();
+			});
+
+			@yield('onload')
+
+		});
+	// $('.wysihtml5').wysihtml5();
+		$(prettyPrint)
+	</script>
 
     @yield('scripts')
 

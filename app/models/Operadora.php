@@ -9,6 +9,9 @@ class Operadora extends Eloquent {
 							'CNPJ',
 							'eMail',
 							'naturezaJuridica',
+							'segmentacao',
+							'modalidade',
+							'municipioIBGE',
 							'endereco_matriz',
 							'endereco_corresp',
 							'totalmentePulverizado',
@@ -23,6 +26,7 @@ class Operadora extends Eloquent {
 	}
 
 	public function telefones(){
-		return Telefone::where('tabela','=','operadoras')->where('tabela_id','=',$this->id)->get();
+		return $this->hasMany('Telefone','tabela_id');
+		// return Telefone::where('tabela','=','operadoras')->where('tabela_id','=',$this->id)->get();
 	}
 }

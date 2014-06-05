@@ -5,30 +5,31 @@
 {{{ $title }}} :: @parent
 @stop
 
-@section('keywords')Operadora administration @stop
+@section('keywords')Responsáveis administration @stop
 @section('author')Rafael Querino Moreira @stop
-@section('description')Operadora administration index @stop
+@section('description')Responsáveis administration @stop
 
 {{-- Content --}}
 @section('content')
 	<div class="page-header">
 		<h3>
 			{{{ $title }}}
-			@if(!count($operadoras))
-				<div class="pull-right">
-					<a href="{{{ URL::to('admin/operadoras/create') }}}" class="btn btn-small btn-info iframe"><span class="glyphicon glyphicon-plus-sign"></span> Criar</a>
-				</div>
-			@endif
+			
+			<div class="pull-right">
+				<a href="{{{ URL::to('admin/resps/create') }}}" class="btn btn-small btn-info iframe"><span class="glyphicon glyphicon-plus-sign"></span> Criar</a>
+			</div>
+
 		</h3>
 	</div>
 
-	<table id="operadoras" class="table table-striped table-hover">
+	<table id="resps" class="table table-striped table-hover">
 		<thead>
 			<tr>
-				<th class="col-md-2">{{{ Lang::get('admin/operadoras/table.registroANS') }}}</th>
-				<th class="col-md-2">{{{ Lang::get('admin/operadoras/table.CNPJ') }}}</th>
-				<th class="col-md-3">{{{ Lang::get('admin/operadoras/table.razaoSocial') }}}</th>
-				<th class="col-md-3">{{{ Lang::get('admin/operadoras/table.nomeFantasia') }}}</th>
+				<th class="col-md-1">{{{ Lang::get('admin/resps/table.tipoPessoa') }}}</th>
+				<th class="col-md-3">{{{ Lang::get('admin/resps/table.nome') }}}</th>
+				<th class="col-md-3">{{{ Lang::get('admin/resps/table.cpfCnpj') }}}</th>
+				<th class="col-md-1">{{{ Lang::get('admin/resps/table.tipo') }}}</th>
+				<th class="col-md-2">{{{ Lang::get('admin/resps/table.numRegistro') }}}</th>
 				<th class="col-md-2">{{{ Lang::get('table.actions') }}}</th>
 			</tr>
 		</thead>
@@ -42,7 +43,7 @@
 	<script type="text/javascript">
 		var oTable;
 		$(document).ready(function() {
-			oTable = $('#operadoras').dataTable( {
+			oTable = $('#resps').dataTable( {
 				"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
 				"sPaginationType": "bootstrap",
 				"oLanguage": {
@@ -70,7 +71,7 @@
 				},
 				"bProcessing": true,
 		        "bServerSide": true,
-		        "sAjaxSource": "{{ URL::to('admin/operadoras/data') }}",
+		        "sAjaxSource": "{{ URL::to('admin/resps/data') }}",
 		        "fnDrawCallback": function ( oSettings ) {
 	           		$(".iframe").colorbox({iframe:true, width:"90%", height:"90%"});
 	     		}
