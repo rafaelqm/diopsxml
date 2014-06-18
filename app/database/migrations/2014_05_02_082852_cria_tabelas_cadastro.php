@@ -220,6 +220,8 @@ class CriaTabelasCadastro extends Migration {
 			$table->string('conta');
             $table->decimal('valor',19,2);
             $table->date('inicioPeriodo');
+            $table->tinyInteger('mes_num')->nullable();
+			$table->string('sequencia',5)->nullable();
 		});
 
 		Schema::create('idadeSaldoPassivos', function ($table){
@@ -236,7 +238,6 @@ class CriaTabelasCadastro extends Migration {
             $table->decimal('outrosDebPagar',19,2);
             $table->decimal('eventossus',19,2);
             $table->decimal('titulosencargos',19,2);
-            $table->date('inicioPeriodo');
 		});
 
 		Schema::create('idadeSaldoAtivos', function ($table){
@@ -252,7 +253,6 @@ class CriaTabelasCadastro extends Migration {
             $table->decimal('credOper',19,2);
             $table->decimal('outrosCredComPlano',19,2);
             $table->decimal('outrosCredSemPlano',19,2);
-            $table->date('inicioPeriodo');
 		});
 
 		Schema::create('lucrosPrejuizos', function ($table){

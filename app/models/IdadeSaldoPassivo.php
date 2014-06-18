@@ -14,5 +14,5 @@ class IdadeSaldoPassivo extends Eloquent {
 							'outrosDebPagar',
 							'eventossus',
 							'titulosencargos',
-							'inicioPeriodo'];
+							'trimestre'];
 }

@@ -79,6 +79,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+                    <img src="{{ asset('assets/img/logo.png') }}" style="margin-top: 5px;" />
                 </div>
     			<div class="collapse navbar-collapse navbar-ex1-collapse">
     				<ul class="nav navbar-nav">
@@ -102,6 +103,8 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li{{ (Request::is('admin/balancetes*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/balancetes') }}}"><span class="glyphicon glyphicon-list-alt"></span> Balancete trimestral</a></li>
+                                <li{{ (Request::is('admin/ativovinculados*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/ativovinculados') }}}"><span class="glyphicon glyphicon-home"></span> Ativo Vinculado</a></li>
+                                <li{{ (Request::is('admin/fluxocaixas*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/fluxocaixas') }}}"><span class="glyphicon glyphicon-transfer"></span> Fluxo de Caixa</a></li>
                                 <!-- <li{{ (Request::is('admin/resps*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/resps') }}}"><span class="glyphicon glyphicon-bullhorn"></span> Responsáveis</a></li>
                                 <li{{ (Request::is('admin/admins*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/admins') }}}"><span class="glyphicon glyphicon-briefcase"></span> Administradores</a></li>
                                 <li{{ (Request::is('admin/representantes*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/representantes') }}}"><span class="glyphicon glyphicon-lock"></span> Representantes</a></li> -->
@@ -139,16 +142,16 @@
                         </li>
     				</ul>
     				<ul class="nav navbar-nav pull-right">
-    					<li><a href="{{{ URL::to('/') }}}">View Homepage</a></li>
+    					<!-- <li><a href="{{{ URL::to('/') }}}">View Homepage</a></li> -->
     					<li class="divider-vertical"></li>
     					<li class="dropdown">
     							<a class="dropdown-toggle" data-toggle="dropdown" href="#">
     								<span class="glyphicon glyphicon-user"></span> {{{ Auth::user()->username }}}	<span class="caret"></span>
     							</a>
     							<ul class="dropdown-menu">
-    								<li><a href="{{{ URL::to('user/settings') }}}"><span class="glyphicon glyphicon-wrench"></span> Settings</a></li>
+    								<li><a href="{{{ URL::to('user/settings') }}}"><span class="glyphicon glyphicon-wrench"></span> Opções</a></li>
     								<li class="divider"></li>
-    								<li><a href="{{{ URL::to('user/logout') }}}"><span class="glyphicon glyphicon-share"></span> Logout</a></li>
+    								<li><a href="{{{ URL::to('user/logout') }}}"><span class="glyphicon glyphicon-share"></span> Sair</a></li>
     							</ul>
     					</li>
     				</ul>

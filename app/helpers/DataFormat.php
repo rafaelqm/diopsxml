@@ -2,11 +2,19 @@
 class DataFormat{
 
 	public static function makeBR($data){
-		return self::retorna($data,'-','/');
+		if(!is_null($data)){
+			return self::retorna($data,'-','/');
+		}else{
+			return null;
+		}
 	}
 
 	public static function makeUS($data){
-		return self::retorna($data,'/','-');
+		if(!is_null($data)&& $data != '' ){
+			return self::retorna($data,'/','-');
+		}else{
+			return null;
+		}
 	}
 
 	public static function retorna($data,$explode,$glue){

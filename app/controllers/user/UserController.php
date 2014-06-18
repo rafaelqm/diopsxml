@@ -222,7 +222,7 @@ class UserController extends BaseController {
                 Session::forget('loginRedirect');
                 return Redirect::to($r);
             }
-            return Redirect::to('/');
+            return Redirect::to('/admin');
         }
         else
         {

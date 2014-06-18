@@ -13,5 +13,5 @@ class IdadeSaldoAtivo extends Eloquent {
 							'credOper',
 							'outrosCredComPlano',
 							'outrosCredSemPlano',
-							'inicioPeriodo'];
+							'trimestre'];
 }

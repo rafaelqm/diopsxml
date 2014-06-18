@@ -22,6 +22,7 @@ Route::model('operadora', 'Operadora');
 Route::model('resp', 'Resp');
 Route::model('admin', 'Admin');
 Route::model('representante', 'Representante');
+Route::model('ativovinculado', 'AtivoVinculado');
 Route::model('role', 'Role');
 Route::model('balancete', 'Lancamento');
 
@@ -91,6 +92,22 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     Route::post('balancetes/{balancete}/delete', 'AdminBalancetesController@postDelete');
     Route::controller('balancetes',         'AdminBalancetesController');
 
+    # IdadeSaldos
+    Route::controller('idadesaldos',         'AdminIdadeSaldosController');
+
+    # FluxoCaixa Management
+    Route::get( 'fluxocaixas/{mes_num}/editar', 'AdminFluxocaixasController@getEdit');
+    Route::post('fluxocaixas/{mes_num}/editar', 'AdminFluxocaixasController@postEdit');
+    Route::controller('fluxocaixas',         'AdminFluxocaixasController');
+
+    # Ativo Vinculado Management
+    Route::get( 'ativovinculados/{ativovinculado}/exibir', 'AdminAtivoVinculadosController@getShow');
+    Route::get( 'ativovinculados/{ativovinculado}/editar', 'AdminAtivoVinculadosController@getEdit');
+    Route::post('ativovinculados/{ativovinculado}/editar', 'AdminAtivoVinculadosController@postEdit');
+    Route::get( 'ativovinculados/{ativovinculado}/delete', 'AdminAtivoVinculadosController@getDelete');
+    Route::post('ativovinculados/{ativovinculado}/delete', 'AdminAtivoVinculadosController@postDelete');
+    Route::controller('ativovinculados',         'AdminAtivoVinculadosController');
+
     # Admin Management
     Route::get( 'admins/{admin}/exibir', 'AdminAdminsController@getShow');
     Route::get( 'admins/{admin}/editar', 'AdminAdminsController@getEdit');
@@ -159,4 +176,9 @@ Route::post('{postSlug}', 'BlogController@postView');
 Route::get('cidades/{estado}', 'EnderecoController@getCidades');
 
 # Index Page - Last route, no matches
-Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
+// Route::get('/', array('before' => 'detectLang','uses' => 'BlogController@getIndex'));
+Route::get('/', function()
+{
+    // Return about us page
+    return View::make('site/index');
+});

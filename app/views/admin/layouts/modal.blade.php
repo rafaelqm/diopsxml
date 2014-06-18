@@ -115,9 +115,12 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="{{asset('bootstrap/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/prettify.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.mask.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.maskMoney.min.js')}}"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function(){
+
 			$('.close_popup').click(function(){
 				parent.oTable.fnReloadAjax();
 				parent.jQuery.fn.colorbox.close();
@@ -136,6 +139,25 @@
 				});
 				event.preventDefault();
 			});
+
+			$('.data').mask('00/00/0000');
+			/*$('.data').datepicker({
+			    format: "dd/mm/yyyy",
+			    language: "pt-BR",
+			    autoclose: true,
+			    todayHighlight: true
+			});*/
+
+			$('.cpf').mask('000.000.000-00', {reverse: true});
+	  		$('.moeda').maskMoney({
+	  								thousands: '.',
+	  								decimal: ',',
+	  								allowZero: true,
+	  								allowNegative: true
+	  							});
+	  		$('.moeda').css('text-align','right');
+	  		$('.inteiro').mask('000.000.000.000.000', {reverse: true});
+	  		$('.celular').mask("(00) 00009-0000");
 
 			@yield('onload')
 
