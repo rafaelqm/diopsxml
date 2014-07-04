@@ -95,6 +95,9 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function()
     # IdadeSaldos
     Route::controller('idadesaldos',         'AdminIdadeSaldosController');
 
+    # LucrosPrejuizos
+    Route::controller('lucrosprejuizos',         'AdminLucrosPrejuizosController');
+
     # FluxoCaixa Management
     Route::get( 'fluxocaixas/{mes_num}/editar', 'AdminFluxocaixasController@getEdit');
     Route::post('fluxocaixas/{mes_num}/editar', 'AdminFluxocaixasController@postEdit');

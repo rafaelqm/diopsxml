@@ -16,6 +16,10 @@ class AlterTableFluxocaixas extends Migration {
 			$table->dropColumn('inicioPeriodo');
 					
 		});
+		Schema::table('lucrosprejuizos', function($table){	
+			$table->dropColumn('inicioPeriodo');
+					
+		});
 	}
 
 	/**
@@ -27,6 +31,10 @@ class AlterTableFluxocaixas extends Migration {
 	{
 		Schema::table('fluxoCaixas', function($table){
 			$table->date('inicioPeriodo');
+		});
+		Schema::table('lucrosprejuizos', function($table){	
+			$table->date('inicioPeriodo');
+					
 		});
 	}
 

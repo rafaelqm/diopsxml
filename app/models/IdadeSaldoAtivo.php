@@ -14,4 +14,7 @@ class IdadeSaldoAtivo extends Eloquent {
 							'outrosCredComPlano',
 							'outrosCredSemPlano',
 							'trimestre'];
+
+	protected $table = 'idadesaldoativos';
+
 }

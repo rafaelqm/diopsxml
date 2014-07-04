@@ -14,5 +14,8 @@ class IdadeSaldoPassivo extends Eloquent {
 							'outrosDebPagar',
 							'eventossus',
 							'titulosencargos',
-							'trimestre'];
+							'trimestre'
+							];
+
+	protected $table = 'idadesaldopassivos';
 }

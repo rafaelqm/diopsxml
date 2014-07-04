@@ -105,6 +105,8 @@
                                 <li{{ (Request::is('admin/balancetes*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/balancetes') }}}"><span class="glyphicon glyphicon-list-alt"></span> Balancete trimestral</a></li>
                                 <li{{ (Request::is('admin/ativovinculados*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/ativovinculados') }}}"><span class="glyphicon glyphicon-home"></span> Ativo Vinculado</a></li>
                                 <li{{ (Request::is('admin/fluxocaixas*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/fluxocaixas') }}}"><span class="glyphicon glyphicon-transfer"></span> Fluxo de Caixa</a></li>
+                                <li{{ (Request::is('admin/idadesaldos*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/idadesaldos') }}}"><span class="glyphicon glyphicon-sort-by-attributes"></span> Idade de Saldos</a></li>
+                                <li{{ (Request::is('admin/lucrosprejuizos*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/lucrosprejuizos') }}}"><span class="glyphicon glyphicon-sort"></span> Lucros e Prejuízos</a></li>
                                 <!-- <li{{ (Request::is('admin/resps*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/resps') }}}"><span class="glyphicon glyphicon-bullhorn"></span> Responsáveis</a></li>
                                 <li{{ (Request::is('admin/admins*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/admins') }}}"><span class="glyphicon glyphicon-briefcase"></span> Administradores</a></li>
                                 <li{{ (Request::is('admin/representantes*') ? ' class="active"' : '') }}><a href="{{{ URL::to('admin/representantes') }}}"><span class="glyphicon glyphicon-lock"></span> Representantes</a></li> -->
@@ -186,6 +188,7 @@
 
     <script src="{{asset('assets/js/datatables-bootstrap.js')}}"></script>
     <script src="{{asset('assets/js/datatables.fnReloadAjax.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.color-2.1.2.min.js')}}"></script>
 
     <script type="text/javascript">
     	// $('.wysihtml5').wysihtml5();
